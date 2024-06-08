@@ -25,5 +25,4 @@ public class WeekResponse {
 
     @JsonProperty("sunday")
     private DayResponse sunday;
-
 }
