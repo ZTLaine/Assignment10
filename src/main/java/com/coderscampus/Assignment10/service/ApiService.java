@@ -12,7 +12,7 @@ import java.net.URI;
 @Service
 public class ApiService {
 
-    public ResponseEntity<WeekResponse> callApi(String numCalories, String diet, String exclusions){
+    public ResponseEntity<WeekResponse> callWeekApi(String numCalories, String diet, String exclusions){
         RestTemplate restTemplate = new RestTemplate();
 
         URI uri = UriComponentsBuilder.fromHttpUrl("https://api.spoonacular.com/mealplanner/generate")
@@ -28,4 +28,22 @@ public class ApiService {
         System.out.println(response.getBody());
         return response;
     }
+    public ResponseEntity<DayResponse> callDayApi(String numCalories, String diet, String exclusions){
+        RestTemplate restTemplate = new RestTemplate();
+
+        URI uri = UriComponentsBuilder.fromHttpUrl("https://api.spoonacular.com/mealplanner/generate")
+                .queryParam("timeFrame", "day")
+//                .queryParam("targetCalories", numCalories)
+//                .queryParam("diet", diet)
+//                .queryParam("exclude", exclusions)
+                .queryParam("apiKey", "bc0ee5eb33774babac8bd11667ddb8d8")
+                .build()
+                .toUri();
+        ResponseEntity<String> stringResponse = restTemplate.getForEntity(uri, String.class);
+        ResponseEntity<DayResponse> response = restTemplate.getForEntity(uri, DayResponse.class);
+        System.out.println(response.getBody());
+        return response;
+    }
+
+
 }

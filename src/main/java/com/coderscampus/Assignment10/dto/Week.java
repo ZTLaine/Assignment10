@@ -2,7 +2,7 @@ package com.coderscampus.Assignment10.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class WeekContainer {
+public class Week {
     @JsonProperty("monday")
     private DayResponse monday;
 
