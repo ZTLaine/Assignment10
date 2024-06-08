@@ -8,6 +8,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.Optional;
 
 @Service
 public class ApiService {
@@ -17,9 +18,9 @@ public class ApiService {
 
         URI uri = UriComponentsBuilder.fromHttpUrl("https://api.spoonacular.com/mealplanner/generate")
                 .queryParam("timeFrame", "week")
-//                .queryParam("targetCalories", numCalories)
-//                .queryParam("diet", diet)
-//                .queryParam("exclude", exclusions)
+                .queryParamIfPresent("targetCalories", Optional.ofNullable(numCalories))
+                .queryParamIfPresent("diet", Optional.ofNullable(diet))
+                .queryParamIfPresent("exclude", Optional.ofNullable(exclusions))
                 .queryParam("apiKey", "bc0ee5eb33774babac8bd11667ddb8d8")
                 .build()
                 .toUri();
@@ -33,9 +34,9 @@ public class ApiService {
 
         URI uri = UriComponentsBuilder.fromHttpUrl("https://api.spoonacular.com/mealplanner/generate")
                 .queryParam("timeFrame", "day")
-//                .queryParam("targetCalories", numCalories)
-//                .queryParam("diet", diet)
-//                .queryParam("exclude", exclusions)
+                .queryParamIfPresent("targetCalories", Optional.ofNullable(numCalories))
+                .queryParamIfPresent("diet", Optional.ofNullable(diet))
+                .queryParamIfPresent("exclude", Optional.ofNullable(exclusions))
                 .queryParam("apiKey", "bc0ee5eb33774babac8bd11667ddb8d8")
                 .build()
                 .toUri();

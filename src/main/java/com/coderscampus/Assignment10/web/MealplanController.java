@@ -6,6 +6,7 @@ import com.coderscampus.Assignment10.service.ApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -20,13 +21,17 @@ public class MealplanController {
 
 
     @GetMapping("mealplanner/week")
-    public ResponseEntity<WeekResponse> getWeekMeals(String numCalories, String diet, String exclusions){
+    public ResponseEntity<WeekResponse> getWeekMeals(@RequestParam(required = false) String numCalories,
+                                                     @RequestParam(required = false) String diet,
+                                                     @RequestParam(required = false) String exclusions){
 
         return apiService.callWeekApi(numCalories, diet, exclusions);
     }
 
     @GetMapping("mealplanner/day")
-    public ResponseEntity<DayResponse> getDayMeals(String numCalories, String diet, String exclusions){
+    public ResponseEntity<DayResponse> getDayMeals(@RequestParam(required = false) String numCalories,
+                                                   @RequestParam(required = false) String diet,
+                                                   @RequestParam(required = false) String exclusions){
 
         return apiService.callDayApi(numCalories, diet, exclusions);
     }
