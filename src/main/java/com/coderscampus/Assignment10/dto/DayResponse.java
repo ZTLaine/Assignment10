@@ -8,7 +8,7 @@ import java.util.List;
 @Data
 public class DayResponse {
     @JsonProperty("meals")
-    private List<Meal> meal;
+    private List<Meal> meals;
 
     @JsonProperty("nutrients")
     private Nutrients nutrients;
