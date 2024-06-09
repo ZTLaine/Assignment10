@@ -7,7 +7,6 @@ package com.coderscampus.Assignment10.web;
 import com.coderscampus.Assignment10.dto.DayResponse;
 import com.coderscampus.Assignment10.dto.WeekResponse;
 import com.coderscampus.Assignment10.service.ApiService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,10 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class MealplanController {
+    private final ApiService apiService;
 
-    @Autowired
-    ApiService apiService;
-
+//    I switched to this to get rid of the warning @Autowired creates...
+//    Is it generally preferable to avoid @Autowiring?
+    public MealplanController(ApiService apiService){
+        this.apiService = apiService;
+    }
 
     @GetMapping("mealplanner/week")
     public ResponseEntity<WeekResponse> getWeekMeals(@RequestParam(required = false) String numCalories,
