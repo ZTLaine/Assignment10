@@ -1,3 +1,7 @@
+//  6/9/24
+//  Zack Laine
+//  Assignment 10
+
 package com.coderscampus.Assignment10.web;
 
 import com.coderscampus.Assignment10.dto.DayResponse;
@@ -8,10 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
-
-import java.net.URI;
 
 @RestController
 public class MealplanController {

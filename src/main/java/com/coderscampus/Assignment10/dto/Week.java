@@ -1,3 +1,7 @@
+//  6/9/24
+//  Zack Laine
+//  Assignment 10
+
 package com.coderscampus.Assignment10.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
