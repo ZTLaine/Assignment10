@@ -37,6 +37,7 @@ public class ApiService {
                 .toUri();
         return restTemplate.getForEntity(uri, WeekResponse.class);
     }
+
     public ResponseEntity<DayResponse> callDayApi(String numCalories, String diet, String exclusions){
         RestTemplate restTemplate = new RestTemplate();
 
@@ -50,6 +51,4 @@ public class ApiService {
                 .toUri();
         return restTemplate.getForEntity(uri, DayResponse.class);
     }
-
-
 }

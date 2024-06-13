@@ -18,6 +18,7 @@ public class MealplanController {
 
 //    I switched to this to get rid of the warning @Autowired creates...
 //    Is it generally preferable to avoid @Autowiring?
+//    Claude suggested it was, even with @PostConstruct brought into the mix
     public MealplanController(ApiService apiService){
         this.apiService = apiService;
     }
