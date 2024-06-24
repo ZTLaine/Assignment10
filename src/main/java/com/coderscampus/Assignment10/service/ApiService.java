@@ -27,7 +27,19 @@ public class ApiService {
     public ResponseEntity<WeekResponse> callWeekApi(String numCalories, String diet, String exclusions){
         RestTemplate restTemplate = new RestTemplate();
 
-        URI uri = UriComponentsBuilder.fromHttpUrl(spoonacularBase + spoonacularGenerate)
+        URI uri = buildUri(numCalories, diet, exclusions);
+        return restTemplate.getForEntity(uri, WeekResponse.class);
+    }
+
+    public ResponseEntity<DayResponse> callDayApi(String numCalories, String diet, String exclusions){
+        RestTemplate restTemplate = new RestTemplate();
+
+        URI uri = buildUri(numCalories, diet, exclusions);
+        return restTemplate.getForEntity(uri, DayResponse.class);
+    }
+
+    private URI buildUri(String numCalories, String diet, String exclusions) {
+        return UriComponentsBuilder.fromHttpUrl(spoonacularBase + spoonacularGenerate)
                 .queryParam("timeFrame", "week")
                 .queryParamIfPresent("targetCalories", Optional.ofNullable(numCalories))
                 .queryParamIfPresent("diet", Optional.ofNullable(diet))
@@ -35,20 +47,5 @@ public class ApiService {
                 .queryParam("apiKey", "bc0ee5eb33774babac8bd11667ddb8d8")
                 .build()
                 .toUri();
-        return restTemplate.getForEntity(uri, WeekResponse.class);
-    }
-
-    public ResponseEntity<DayResponse> callDayApi(String numCalories, String diet, String exclusions){
-        RestTemplate restTemplate = new RestTemplate();
-
-        URI uri = UriComponentsBuilder.fromHttpUrl(spoonacularBase + spoonacularGenerate)
-                .queryParam("timeFrame", "day")
-                .queryParamIfPresent("targetCalories", Optional.ofNullable(numCalories))
-                .queryParamIfPresent("diet", Optional.ofNullable(diet))
-                .queryParamIfPresent("exclude", Optional.ofNullable(exclusions))
-                .queryParam("apiKey", "bc0ee5eb33774babac8bd11667ddb8d8")
-                .build()
-                .toUri();
-        return restTemplate.getForEntity(uri, DayResponse.class);
     }
 }
